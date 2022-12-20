@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</head>
+
+<body class="container mt-5">
+
+  <ul class="nav nav-tabs" role="tablist"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <li class="nav-item" role="presentation">
+      <a class="btn btn-info  btn-md" href="../"> HOME 🏠 </a> &nbsp;&nbsp;&nbsp;&nbsp;
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="btn btn-info  btn-md" href="/citas"> CITAS 📅 </a> &nbsp;&nbsp;&nbsp;&nbsp;
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="btn btn-info  btn-md" href="/clientes"> CLIENTES 👤</a> &nbsp;&nbsp;&nbsp;&nbsp;
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="btn btn-info  btn-md" href="/func"> FUNCIONARIOS 👨🏻‍⚕️</a> &nbsp;&nbsp;&nbsp;
+    </li>
+  </ul>
+
+<!--  ---------------- CODIGO ---------------- -->
+
+    <div class="alert alert-info display-1 text-center"> LISTADO DE CLIENTES </div>
+
+    {% if clientes %}
+    
+
+    <table class="table table-striped table-inverse table-responsive">
+        <thead class="thead-inverse">
+            <tr>
+                <th>RUT</th>
+                <th>NOMBRE</th>
+                <th>DIRECCION</th>
+                <th>FONO</th>
+                <th>MASCOTA</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cli in clientes %}
+            <tr>
+                <td> {{ cli.rut_cliente  }}</td>
+                <td> {{ cli.nombre_cliente  }}</td>
+                <td> {{ cli.direccion  }}</td>
+                <td> {{ cli.fono  }}</td>
+                <td> {{ cli.nombre_mascota  }}</td>
+
+
+
+                <!-- COLOCAR EL ID QUE SE ENCUENTRA EN LA TABLA DE CLIENTES DE LA BASE DE DATOS  -->
+                <td><a class="btn btn-primary btn-sm" href="/editarpacientes/{{ cli.id }}"  role="button"> Actualizar📝 </a></td>
+                <td><a class="btn btn-primary btn-sm" href="/eliminarcliente/{{ cli.id }}"  role="button"> Eliminar ❌ </a></td>
+
+</tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+
+    <div class="alert alert-primary" role="alert">
+        <strong> No se encontro ningun cliente </strong>
+    </div>
+
+    {% endif %}
+
+<!-- rutas de los URL -->
+    <a href="../" class="btn btn-danger"> VOLVER </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="../addpacientes" class="btn btn-info float-mid"> AGREGAR CLIENTE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="../addmasc" class="btn btn-secondary float-mid"> AGREGAR MASCOTA</a>
+    
+</body>
+</html>
